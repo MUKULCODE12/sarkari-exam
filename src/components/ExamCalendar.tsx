@@ -13,7 +13,7 @@ export default function ExamCalendar({ darkMode }: ExamCalendarProps) {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/events")
+    fetch("https://sarkari-exam-backend.onrender.com/api/events")
       .then(r => r.json())
       .then(data => {
         const map: Record<string, any> = {};

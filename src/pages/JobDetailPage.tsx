@@ -24,7 +24,7 @@ export default function JobDetailPage({ darkMode, bookmarks, toggleBookmark }: J
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/api/jobs/${id}`)
+    fetch(`https://sarkari-exam-backend.onrender.com/api/jobs/${id}`)
       .then(r => r.json())
       .then(data => {
         setJob(data);

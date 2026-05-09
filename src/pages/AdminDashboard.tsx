@@ -9,7 +9,7 @@ interface AdminDashboardProps {
   setAdminToken: (t: string | null) => void;
 }
 
-const API = 'http://localhost:5000';
+const API = 'https://sarkari-exam-backend.onrender.com';
 
 export default function AdminDashboard({ darkMode, adminToken, setAdminToken }: AdminDashboardProps) {
   const navigate = useNavigate();

@@ -35,7 +35,7 @@ export default function UserLoginPage({ darkMode, onLogin }: UserLoginPageProps)
       const body: any = { email, password };
       if (isRegister) { body.name = name; body.phone = phone; body.notifChannels = notifChannels; }
 
-      const res = await fetch(`http://localhost:5000${endpoint}`, {
+      const res = await fetch(`https://sarkari-exam-backend.onrender.com${endpoint}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
       });
       const data = await res.json();

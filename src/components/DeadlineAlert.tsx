@@ -24,7 +24,7 @@ export default function DeadlineAlert({ darkMode }: DeadlineAlertProps) {
       try { setDismissed(JSON.parse(stored)); } catch {}
     }
 
-    fetch('http://localhost:5000/api/jobs/deadlines')
+    fetch('https://sarkari-exam-backend.onrender.com/api/jobs/deadlines')
       .then(r => r.json())
       .then(data => setDeadlines(data))
       .catch(() => {});

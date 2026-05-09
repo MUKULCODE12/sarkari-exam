@@ -23,7 +23,7 @@ export default function Header({ darkMode, toggleDarkMode, searchQuery, setSearc
   const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/notifications')
+    fetch('https://sarkari-exam-backend.onrender.com/api/notifications')
       .then(r => r.json())
       .then(data => setNotifications(Array.isArray(data) ? data.slice(0, 5) : []))
       .catch(() => {});
@@ -32,7 +32,7 @@ export default function Header({ darkMode, toggleDarkMode, searchQuery, setSearc
   // Fetch user unread alerts count
   useEffect(() => {
     if (userToken) {
-      fetch('http://localhost:5000/api/users/alerts/unread-count', {
+      fetch('https://sarkari-exam-backend.onrender.com/api/users/alerts/unread-count', {
         headers: { 'Authorization': `Bearer ${userToken}` }
       }).then(r => r.json()).then(data => setUnreadCount(data.count || 0)).catch(() => {});
     }

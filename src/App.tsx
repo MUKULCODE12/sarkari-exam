@@ -77,7 +77,7 @@ function AppContent() {
     if (bookmarks.length === 0) { setBookmarkedJobs([]); return; }
     Promise.all(
       bookmarks.map(id =>
-        fetch(`http://localhost:5000/api/jobs/${id}`)
+        fetch(`https://sarkari-exam-backend.onrender.com/api/jobs/${id}`)
           .then(r => r.ok ? r.json() : null)
           .catch(() => null)
       )
@@ -90,7 +90,7 @@ function AppContent() {
     const params: any = { ...filters };
     if (searchQuery) params.search = searchQuery;
     const query = new URLSearchParams(params).toString();
-    const url = `http://localhost:5000/api/jobs${query ? '?' + query : ''}`;
+    const url = `https://sarkari-exam-backend.onrender.com/api/jobs${query ? '?' + query : ''}`;
 
     fetch(url)
       .then(r => r.json())
@@ -114,7 +114,7 @@ function AppContent() {
       // Sync with server if user is logged in
       if (userToken) {
         const method = exists ? 'DELETE' : 'POST';
-        fetch(`http://localhost:5000/api/users/bookmarks/${job._id}`, {
+        fetch(`https://sarkari-exam-backend.onrender.com/api/users/bookmarks/${job._id}`, {
           method, headers: { 'Authorization': `Bearer ${userToken}` }
         }).catch(() => {});
       }

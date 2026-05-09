@@ -30,17 +30,17 @@ export default function ProfilePage({ darkMode, user, userToken, onLogout, bookm
   useEffect(() => {
     if (!userToken) { navigate('/login'); return; }
     // Fetch alerts
-    fetch('http://localhost:5000/api/users/alerts', { headers }).then(r => r.json()).then(data => { if (Array.isArray(data)) setAlerts(data); }).catch(() => {});
+    fetch('https://sarkari-exam-backend.onrender.com/api/users/alerts', { headers }).then(r => r.json()).then(data => { if (Array.isArray(data)) setAlerts(data); }).catch(() => {});
     // Fetch bookmarks
-    fetch('http://localhost:5000/api/users/bookmarks', { headers }).then(r => r.json()).then(data => { if (Array.isArray(data)) setBookmarkedJobs(data); }).catch(() => {});
+    fetch('https://sarkari-exam-backend.onrender.com/api/users/bookmarks', { headers }).then(r => r.json()).then(data => { if (Array.isArray(data)) setBookmarkedJobs(data); }).catch(() => {});
     // Fetch unread count
-    fetch('http://localhost:5000/api/users/alerts/unread-count', { headers }).then(r => r.json()).then(data => setUnreadCount(data.count || 0)).catch(() => {});
+    fetch('https://sarkari-exam-backend.onrender.com/api/users/alerts/unread-count', { headers }).then(r => r.json()).then(data => setUnreadCount(data.count || 0)).catch(() => {});
   }, [userToken]);
 
   const handleSavePrefs = async () => {
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5000/api/users/profile', {
+      const res = await fetch('https://sarkari-exam-backend.onrender.com/api/users/profile', {
         method: 'PUT', headers, body: JSON.stringify({ notifChannels, phone })
       });
       if (res.ok) { showToast('Preferences saved!', 'success'); } else { showToast('Failed to save', 'error'); }
@@ -50,7 +50,7 @@ export default function ProfilePage({ darkMode, user, userToken, onLogout, bookm
 
   const markAllRead = async () => {
     try {
-      await fetch('http://localhost:5000/api/users/alerts/read-all', { method: 'PUT', headers });
+      await fetch('https://sarkari-exam-backend.onrender.com/api/users/alerts/read-all', { method: 'PUT', headers });
       setAlerts(prev => prev.map(a => ({ ...a, isRead: true })));
       setUnreadCount(0);
       showToast('All alerts marked as read', 'info');
@@ -59,7 +59,7 @@ export default function ProfilePage({ darkMode, user, userToken, onLogout, bookm
 
   const markOneRead = async (alertId: string) => {
     try {
-      await fetch(`http://localhost:5000/api/users/alerts/${alertId}/read`, { method: 'PUT', headers });
+      await fetch(`https://sarkari-exam-backend.onrender.com/api/users/alerts/${alertId}/read`, { method: 'PUT', headers });
       setAlerts(prev => prev.map(a => a._id === alertId ? { ...a, isRead: true } : a));
       setUnreadCount(prev => Math.max(0, prev - 1));
     } catch {}

@@ -34,7 +34,7 @@ export default function AllJobsPage({ darkMode, bookmarks, toggleBookmark }: All
     if (jobType) params.set('type', jobType);
 
     const query = params.toString();
-    fetch(`http://localhost:5000/api/jobs${query ? '?' + query : ''}`)
+    fetch(`https://sarkari-exam-backend.onrender.com/api/jobs${query ? '?' + query : ''}`)
       .then(r => r.json())
       .then(data => {
         setJobs(data);

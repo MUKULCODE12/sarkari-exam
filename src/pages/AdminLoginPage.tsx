@@ -24,7 +24,7 @@ export default function AdminLoginPage({ darkMode, setAdminToken }: AdminLoginPa
 
     try {
       const endpoint = isRegister ? '/api/admin/register' : '/api/admin/login';
-      const res = await fetch(`http://localhost:5000${endpoint}`, {
+      const res = await fetch(`https://sarkari-exam-backend.onrender.com${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

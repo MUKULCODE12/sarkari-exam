@@ -33,7 +33,7 @@ export default function HeroBanner({ darkMode, searchQuery, setSearchQuery, onSe
   const [stats, setStats] = useState({ totalJobs: 0, totalEvents: 0, totalSubscribers: 0 });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/stats')
+    fetch('https://sarkari-exam-backend.onrender.com/api/stats')
       .then(r => r.json())
       .then(setStats)
       .catch(() => setStats({ totalJobs: 15, totalEvents: 8, totalSubscribers: 100 }));

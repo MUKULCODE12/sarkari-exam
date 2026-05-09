@@ -58,7 +58,7 @@ export default function NotificationCenter({ darkMode }: NotificationCenterProps
   // Fetch recent alerts
   useEffect(() => {
     if (activeTab === 'recent') {
-      fetch('http://localhost:5000/api/notifications')
+      fetch('https://sarkari-exam-backend.onrender.com/api/notifications')
         .then(r => r.json())
         .then(data => setRecentAlerts(Array.isArray(data) ? data : []))
         .catch(() => {});
@@ -79,7 +79,7 @@ export default function NotificationCenter({ darkMode }: NotificationCenterProps
 
     setSubmitting(true);
     try {
-      const res = await fetch('http://localhost:5000/api/subscribers', {
+      const res = await fetch('https://sarkari-exam-backend.onrender.com/api/subscribers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailEnabled ? email : undefined, phone: whatsappEnabled ? phone : undefined, channels, trackedExams })
@@ -111,7 +111,7 @@ export default function NotificationCenter({ darkMode }: NotificationCenterProps
   const handleUnsubscribe = async () => {
     if (!subscriberId) return;
     try {
-      await fetch(`http://localhost:5000/api/subscribers/${subscriberId}`, { method: 'DELETE' });
+      await fetch(`https://sarkari-exam-backend.onrender.com/api/subscribers/${subscriberId}`, { method: 'DELETE' });
       setSubscriberId(null);
       setEmailEnabled(false);
       setWhatsappEnabled(false);
@@ -129,7 +129,7 @@ export default function NotificationCenter({ darkMode }: NotificationCenterProps
 
     if (subscriberId) {
       try {
-        await fetch(`http://localhost:5000/api/subscribers/${subscriberId}`, {
+        await fetch(`https://sarkari-exam-backend.onrender.com/api/subscribers/${subscriberId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ trackedExams: updated })
@@ -148,7 +148,7 @@ export default function NotificationCenter({ darkMode }: NotificationCenterProps
 
     if (subscriberId) {
       try {
-        await fetch(`http://localhost:5000/api/subscribers/${subscriberId}`, {
+        await fetch(`https://sarkari-exam-backend.onrender.com/api/subscribers/${subscriberId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ trackedExams: updated })
